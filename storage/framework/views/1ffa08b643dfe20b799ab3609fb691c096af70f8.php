@@ -8,12 +8,14 @@
 
 </div>
 
-
-
-
 <form method="POST" action="<?php echo e(route('post.comment', $post->id)); ?>">
         <?php echo e(csrf_field()); ?>
 
+        <div class="form-group">
+            <?php echo csrf_field(); ?>
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name"/>
+        </div>
     <div class="form-group">
         <label for="comment">Comment</label>
         <div>
@@ -21,7 +23,7 @@
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Comment</button>
-    
+
  </form> 
 
 <small>Written on <?php echo e($post->created_at); ?></small>

@@ -14,13 +14,10 @@ class post extends Model
         return $this->hasMany(\App\Comment::class);
     }
    
-
-   /* public function addcomment($comment)
+    public function user()
     {
-        comment::create([
-            'comment' => $comment,
-            'post_id' => $this->id
-        ]);
+        return $this->belongsTo(\App\User::class);
+    }
 
-    }*/
+
 }

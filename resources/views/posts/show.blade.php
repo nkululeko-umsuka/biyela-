@@ -9,11 +9,12 @@
     {{$post->body}}
 </div>
 
-
-
-
 <form method="POST" action="{{ route('post.comment', $post->id)}}">
         {{ csrf_field() }}
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name"/>
+        </div>
     <div class="form-group">
         <label for="comment">Comment</label>
         <div>
@@ -21,7 +22,7 @@
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Comment</button>
-    {{-- <a href="{{route('post.comment')}}" class="btn btn-primary">Comment</a> --}}
+
  </form> 
 
 <small>Written on {{$post->created_at}}</small>

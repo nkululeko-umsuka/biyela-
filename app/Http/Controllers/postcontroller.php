@@ -56,7 +56,8 @@ class postcontroller extends Controller
             'title' => $request->get('title'),
             'body' => $request->get('body')
         ]);
-       
+        $post->user_id =Auth::user()->id;
+
 
         $post->save();
         return redirect('/posts')->with('success', ' Post Created Successfully');
@@ -79,12 +80,14 @@ class postcontroller extends Controller
     {
         $post = post::find($id);
         $this->validate($request,[
+            'name' => 'required',
             'comment' => 'required',
         ]);
        
         $comment = new comment;
         $comment->user_id = Auth::user()->id;
-        $comment->post_id =$id;
+        $comment->post_id =$id; 
+        $comment->name = $request->input('name');
         $comment->comment = $request->input('comment');
         $comment->save(); 
         return redirect(route('posts.index', compact('post')))->with('success', ' Comment Created Successfully');

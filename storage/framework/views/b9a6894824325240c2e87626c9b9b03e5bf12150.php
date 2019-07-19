@@ -42,8 +42,6 @@
                     </div>
                    
                     
-
-                    
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="<?php echo e(__('Toggle navigation')); ?>">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -70,8 +68,6 @@
                         <?php else: ?>
                        
                         <li><a href="#"></i></a></li> 
-
-               
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" 

@@ -68,8 +68,6 @@
                        
                         <li><a href="#"></i></a></li> 
 
-               
-
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" 
                             data-toggle="dropdown"  aria-expanded="false" aria-haspopup="true"  v-pre >
