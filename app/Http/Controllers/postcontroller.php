@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\post;
 use App\comment;
+use Auth;
+
+
 
 
 
@@ -18,6 +21,7 @@ class postcontroller extends Controller
     public function index()
     {
          $posts=post::all();
+         $comments=comment::all();
         return view('posts.index')->with('posts',$posts);
     }
 
@@ -46,9 +50,7 @@ class postcontroller extends Controller
             'body' => 'required'
 
         ]);
-       /* $post = post::create([]);
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');*/
+       
 
         $post = new post([
             'title' => $request->get('title'),
@@ -57,8 +59,7 @@ class postcontroller extends Controller
        
 
         $post->save();
-        return redirect('/posts');
-       // return 123;
+        return redirect('/posts')->with('success', ' Post Created Successfully');
     }
 
     /**
@@ -70,19 +71,11 @@ class postcontroller extends Controller
     public function show($id, Request $request)
     {
         $post = post::find($id);
-        //$comment = comment::findOrFail($id);
-        // $comment = new comment();
-        //$post = new post();
-
-        // $comment = new comment;
-        //     $comment->body = $request->body;
-        //     //$comment->$post = $request->$post;
-        // $comment->save();
-
-        return view('posts.show')->with('post',$post);
+        $comment = comment::all(); 
+        return view('posts.show', compact('post', 'comment'));
     }
     
-    public function comment($id,Request $request)
+    public function comment(Request $request, $id)
     {
         $post = post::find($id);
         $this->validate($request,[
@@ -90,10 +83,11 @@ class postcontroller extends Controller
         ]);
        
         $comment = new comment;
-         $comment->comment = $request->input('comment');
-       // $comment->body = $request->body;
-        $comment->save(); return $comment;
-        return redirect()->back();
+        $comment->user_id = Auth::user()->id;
+        $comment->post_id =$id;
+        $comment->comment = $request->input('comment');
+        $comment->save(); 
+        return redirect(route('posts.index', compact('post')))->with('success', ' Comment Created Successfully');
     }
 
     /**
@@ -104,7 +98,9 @@ class postcontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = post::findorFail($id);
+
+        return view('posts.edit', compact('post'));
     }
     /**
      * Update the specified resource in storage.
@@ -115,9 +111,16 @@ class postcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required'
+            
+          ]);
+    
+          $post = post::findorFail($id)->update($request->all());
+          return redirect()->route('posts.index')->with('success','Posts Updated Successfully');
+        
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -126,9 +129,12 @@ class postcontroller extends Controller
      */
     public function destroy($id)
     {
-        $post = post::find($id);
-        $post->delete();
+        // $post = post::find($id);
+        // $post->delete();
+        post::where('id', $id)->delete();
 
-     return redirect('/posts')->with('success', 'deleted Successfully');
+     return redirect('/posts')->with('success', ' Post Deleted Successfully');
     }
+
+     
 }

@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view ('welcome');
 });
 
+Auth::routes();
 
 Route::get('/counter', function () {
  
@@ -35,18 +36,6 @@ Route::get('/', 'BlogController@index');
 
 Route::get('/notification/get','notificationController@get');
 
-
-
-//Route::post('/post/store','postController@store');
-//Route::get('/post/{id}','postController@show')->name('post.show');
-
-//Route::get('/post','postController@create');
-
-//Route::post('/comment/store','commentController@store');
-//Route::resource('post', 'postCOntroller');
-
-
-
 //post
  //Route::get('posts','postcontroller@index');
  //Route::get('posts/create','postcontroller@create');
@@ -55,7 +44,7 @@ Route::get('/notification/get','notificationController@get');
 Route::resource('posts','postcontroller');
 Route::get('posts/{id}','postcontroller@show');
 //Route::post('/comment/{id}','postcontroller@comment');
-//Route::post('posts','postcontroller@comment')->name('post.comment');
+Route::post('posts/{id}','postcontroller@comment')->name('post.comment');
 
 //comment
 //Route::('posts','postcontrooler@index');

@@ -18,10 +18,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     
-
-   
     <title><?php echo e(config('app.name', 'Laravel')); ?></title>
-
     <!-- Scripts -->
     <script src="<?php echo e(asset('js/app.js')); ?>" defer></script>
 
@@ -48,7 +45,7 @@
                         <a href="<?php echo e(url('/comments')); ?>">Comments</a>
                     </div>
 
-                    <a href="<?php echo e(url('/listen  ')); ?>">Broadacst</a>
+                    
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="<?php echo e(__('Toggle navigation')); ?>">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -73,37 +70,25 @@
                             </li>
 
                         <?php else: ?>
-                        
-                       <p>comments : <?php echo e($comments->count()); ?></p>
-                        <li><a href="#"></i></a></li>
+                       
+                        <li><a href="#"></i></a></li> 
 
-                        
-                        
+               
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" 
                             data-toggle="dropdown"  aria-expanded="false" aria-haspopup="true"  v-pre >
 
                             <i class="fa fa-bell"></i>
-                            <?php if(auth()->user()->unreadnotifications->count()): ?>
-                        <span class="badge badge-light"><?php echo e(auth()->user()->unreadnotifications->count()); ?></span>
+                            <?php if(auth()->user()->comment->count()): ?>
+                        <span class="badge badge-light"><?php echo e(auth()->user()->comment->count()); ?></span>
                              <?php endif; ?>
                             </a>
 
-                            <ul class="dropdown-menu">
-                            <li><a style="color: green" href="<?php echo e(route('markRead')); ?>">Mark all as Read></a></li>
-                                <?php $__currentLoopData = auth()->user()->unreadnotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                
-                                <li style="background-color: blue"><a href="#"><?php echo e($notification->data['data']); ?>}</a></li>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-                                <?php $__currentLoopData = auth()->user()->readnotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                
-                                <li><a href="#"><?php echo e($notification->data['data']); ?>}</a></li>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </ul>
-
                         </li>
+
+                        
+                        
                         <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <?php echo e(Auth::user()->name); ?> <span class="caret"></span>

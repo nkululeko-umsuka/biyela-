@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\comment;
 use Illuminate\Http\Request;
 
+use App\User;
+use App\Notifications\TaskCompleted;
+
+
 class HomeController extends Controller
 {
     /**
@@ -24,6 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+		 User::find(1)->notify(new TaskCompleted);
         $comments=comment::all();
         return view('home',compact('comments'));
     }

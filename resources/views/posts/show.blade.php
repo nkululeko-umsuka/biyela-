@@ -12,19 +12,41 @@
 
 
 
-<form method="POST" action="{{ route('post.comment')}}">
+<form method="POST" action="{{ route('post.comment', $post->id)}}">
         {{ csrf_field() }}
     <div class="form-group">
-        <label for="body">Comment</label>
+        <label for="comment">Comment</label>
         <div>
-            <textarea name="body" cols="150" rows="2"></textarea>
+            <textarea name="comment" cols="150" rows="2"></textarea>
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Comment</button>
     {{-- <a href="{{route('post.comment')}}" class="btn btn-primary">Comment</a> --}}
-</form>
-
+ </form> 
 
 <small>Written on {{$post->created_at}}</small>
+
+
+
+<h3>List Of Comment on a Post:</h3>
+ 
+
+{{-- @if(count($comments)>0)
+@foreach($comments->all() as $comment)
+<p>{{$comment->comment}}</p>
+@endforeach
+@else
+<p>No Post Available</p>
+@endif --}}
+{{--<p>comment count:{{$comment->count()}}</p>--}}
+    @foreach ($comment as $c)
+        @if ($post->id == $c->post_id)
+        
+      <p>post id :{{ $c->post_id }}</p>
+            <p>comment:  {{ $c->comment }}</p><br>
+            
+        @endif
+        
+@endforeach
 
 @endsection

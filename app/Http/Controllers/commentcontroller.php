@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\comment;
 use App\post;
-use auth;
+use Auth;
 use Session;
 use App\Notifications\broadcastnotification;
 
@@ -31,8 +31,8 @@ class commentcontroller extends Controller
      */
     public function create()
     {
+       
         $comments = new comment();
-       // return view('Comments.create');
         return view('comments.create', compact('comments'));
     }
 
@@ -42,7 +42,7 @@ class commentcontroller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $request->validate([
 
@@ -51,7 +51,7 @@ class commentcontroller extends Controller
         ]);
         
         $comment = new comment();
-        //$comment->user_id = Auth::user()->id;
+       
         $comment->comment = $request->comment;
         $comment = new comment([
             'comment' => $request->get('comment'),
@@ -104,8 +104,6 @@ class commentcontroller extends Controller
           $comment->comment= $request->get('comment');
           
           $comment->save();
-        //this is our RedirectToAction
-          //return redirect('/share')->with('success', 'Stock has been updated');
           return redirect()->back();
         
     }
