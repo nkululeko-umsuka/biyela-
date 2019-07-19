@@ -41,9 +41,7 @@
                            <a href="<?php echo e(url('/posts')); ?>">Posts</a>
                     </div>
                    
-                    <div>
-                        <a href="<?php echo e(url('/comments')); ?>">Comments</a>
-                    </div>
+                    
 
                     
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="<?php echo e(__('Toggle navigation')); ?>">
