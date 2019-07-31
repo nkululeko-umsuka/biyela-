@@ -68,7 +68,7 @@
                         <?php else: ?>
                        
                         <li><a href="#"></i></a></li> 
-
+                    
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" 
                             data-toggle="dropdown"  aria-expanded="false" aria-haspopup="true"  v-pre >
@@ -78,8 +78,8 @@
                         <span class="badge badge-light"><?php echo e(auth()->user()->comment->count()); ?></span>
                              <?php endif; ?>
                             </a>
-
                         </li>
+                        
 
                         
                         

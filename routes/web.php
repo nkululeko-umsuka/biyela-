@@ -14,14 +14,11 @@ use App\Events\TaskEvent;
 
 
 Route::get('/', function () {
- 
-   
    //User::find(1)->notify(new TaskCompleted);
     return view ('welcome');
 });
 
 Auth::routes();
-
 Route::get('/counter', function () {
  
    return view ('counter');

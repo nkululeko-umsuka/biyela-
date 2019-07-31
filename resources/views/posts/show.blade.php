@@ -43,10 +43,11 @@
     @foreach ($comment as $c)
         @if ($post->id == $c->post_id)
         
-      <p>post id :{{ $c->post_id }}</p>
+      <p>Name :{{ $c->name }}</p>
             <p>comment:  {{ $c->comment }}</p><br>
             
         @endif
+
         
 @endforeach
 

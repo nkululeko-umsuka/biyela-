@@ -67,7 +67,7 @@
                         @else
                        
                         <li><a href="#"></i></a></li> 
-
+                    {{-- @if(!auth::user()->id)--}}
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" 
                             data-toggle="dropdown"  aria-expanded="false" aria-haspopup="true"  v-pre >
@@ -77,8 +77,8 @@
                         <span class="badge badge-light">{{auth()->user()->comment->count()}}</span>
                              @endif
                             </a>
-
                         </li>
+                        {{--@endif--}}
 
                         {{--<li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" 

@@ -12,7 +12,6 @@
         <?php echo e(csrf_field()); ?>
 
         <div class="form-group">
-            <?php echo csrf_field(); ?>
             <label for="name">Name</label>
             <input type="text" class="form-control" name="name"/>
         </div>
@@ -38,10 +37,11 @@
     <?php $__currentLoopData = $comment; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <?php if($post->id == $c->post_id): ?>
         
-      <p>post id :<?php echo e($c->post_id); ?></p>
+      <p>Name :<?php echo e($c->name); ?></p>
             <p>comment:  <?php echo e($c->comment); ?></p><br>
             
         <?php endif; ?>
+
         
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
