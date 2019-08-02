@@ -14,7 +14,6 @@ use App\Events\TaskEvent;
 
 
 Route::get('/', function () {
-   //User::find(1)->notify(new TaskCompleted);
     return view ('welcome');
 });
 
